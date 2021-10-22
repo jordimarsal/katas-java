@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
-import net.jordimp.katas.arraydiff.ArrayDiff;
+import net.jordimp.katas.arrays.ArrayDiff;
 
 class ArrayDiffTests {
 

@@ -1,4 +1,4 @@
-package net.jordimp.katas.arraydiff;
+package net.jordimp.katas.arrays;
 
 import java.util.Arrays;
 
