@@ -56,9 +56,9 @@ class FighterKata {
     private final int damagePerAttack;
 
     public FighterKata(final Fighter fighter) {
-        this.name = fighter.name;
-        this.health = fighter.health;
-        this.damagePerAttack = fighter.damagePerAttack;
+        this.name = fighter.getName();
+        this.health = fighter.getHealth();
+        this.damagePerAttack = fighter.getDamagePerAttack();
     }
 
     public void decreaseHealth(int strike) {
