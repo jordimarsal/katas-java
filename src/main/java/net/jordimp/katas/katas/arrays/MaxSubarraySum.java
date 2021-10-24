@@ -1,4 +1,4 @@
-package net.jordimp.katas.arrays;
+package net.jordimp.katas.katas.arrays;
 
 import static java.util.Arrays.stream;
 import static java.util.stream.IntStream.range;

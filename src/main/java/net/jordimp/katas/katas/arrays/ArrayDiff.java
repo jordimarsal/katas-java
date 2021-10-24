@@ -1,4 +1,4 @@
-package net.jordimp.katas.arrays;
+package net.jordimp.katas.katas.arrays;
 
 import java.util.Arrays;
 

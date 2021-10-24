@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
-import net.jordimp.katas.streams.RecycleStream;
+import net.jordimp.katas.katas.streams.RecycleStream;
 
 class RecycleStreamTests {
 

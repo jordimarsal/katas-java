@@ -1,4 +1,4 @@
-package net.jordimp.katas;
+package net.jordimp.katas.katas;
 
 import static java.lang.String.format;
 

@@ -1,4 +1,4 @@
-package net.jordimp.katas.streams;
+package net.jordimp.katas.katas.streams;
 
 import java.util.List;
 import java.util.regex.Pattern;

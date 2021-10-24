@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import net.jordimp.katas.arrays.MaxSubarraySum;
+import net.jordimp.katas.katas.arrays.MaxSubarraySum;
 
 class MaxSubarraySumTest {
 
