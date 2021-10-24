@@ -9,8 +9,6 @@ import net.jordimp.katas.entity.UserEntity;
 @Repository
 public interface UserRepositoryCustom {
 
-    UserEntity findByUsername(String username);
-
     List<UserEntity> findByFirstName(String firstName);
 
 }
