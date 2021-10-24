@@ -16,6 +16,8 @@ spring:
       org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
+    open-in-view:
+      false
   h2:
     console.enabled: true
     console.path: /h2-console

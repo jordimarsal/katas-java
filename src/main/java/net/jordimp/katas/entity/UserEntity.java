@@ -1,4 +1,4 @@
-package net.jordimp.katas.repository.h2;
+package net.jordimp.katas.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
