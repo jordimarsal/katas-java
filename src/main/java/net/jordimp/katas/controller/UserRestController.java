@@ -23,7 +23,7 @@ public class UserRestController {
 
     @GetMapping(value = "/")
     public String root() {
-        return "Endpoints:<br>----------------<br><br>/ this page <br> <br>\n/users/ <br>\n/users/{username}<br><br>*guest is an username";
+        return "Endpoints:<br>----------------<br><br>/ this page <br> <br>\n/users/ <br>\n/users/{username}<br>/users-by-fname/Jordi<br><br>*guest is an username";
     }
 
     @GetMapping(value = "/users")
@@ -34,6 +34,11 @@ public class UserRestController {
     @GetMapping(value = "/users/{username}")
     public UserDto getUserByUserName(@PathVariable(value = "username") final String username) {
         return this.userService.getUserByUsername(username);
+    }
+
+    @GetMapping(value = "/users-by-fname/{firstName}")
+    public List<UserDto> getUsersByFirstName(@PathVariable(value = "firstName") final String firstName) {
+        return this.userService.getUsersByFirstname(firstName);
     }
 
 }

@@ -35,4 +35,11 @@ public class UserServiceImpl implements UserService {
         return UserMapper.toDto(userEntity);
     }
 
+    @Override
+    public List<UserDto> getUsersByFirstname(final String firstName) {
+
+        final List<UserEntity> userEntities = this.userRepository.findByFirstName(firstName);
+        return UserMapper.userEntityToDto(userEntities);
+    }
+
 }
