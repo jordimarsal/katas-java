@@ -23,6 +23,7 @@
         <lombok.version>1.18.20</lombok.version>
         <slf4j.version>1.7.32</slf4j.version>
         <junit.version>5.7.1</junit.version>
+        <embed.mongo.version>3.1.3</embed.mongo.version>
     </properties>
 
     <dependencies>
@@ -53,6 +54,26 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- Mongo embedded -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/cz.jirutka.spring/embedmongo-spring -->
+        <dependency>
+            <groupId>cz.jirutka.spring</groupId>
+            <artifactId>embedmongo-spring</artifactId>
+            <version>1.3.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/de.flapdoodle.embed/de.flapdoodle.embed.mongo -->
+        <dependency>
+            <groupId>de.flapdoodle.embed</groupId>
+            <artifactId>de.flapdoodle.embed.mongo</artifactId>
+            <version>${embed.mongo.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- Project Lombok -->
