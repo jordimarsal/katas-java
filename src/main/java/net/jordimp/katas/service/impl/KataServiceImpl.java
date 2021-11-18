@@ -1,52 +1,51 @@
 package net.jordimp.katas.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
 import net.jordimp.katas.dto.KataDto;
 import net.jordimp.katas.entity.KataEntity;
 import net.jordimp.katas.mapper.KataMapper;
 import net.jordimp.katas.repository.mongo.KataRepository;
 import net.jordimp.katas.service.KataService;
 
+@RequiredArgsConstructor
 @Service
 public class KataServiceImpl implements KataService {
 
     private final KataRepository kataRepository;
-
-    public KataServiceImpl(final KataRepository kataRepository) {
-
-        this.kataRepository = kataRepository;
-    }
+    private final KataMapper kataMapstruct;
 
     @Override
     public List<KataDto> getAllKatas() {
-        return KataMapper.kataEntityToDto((List<KataEntity>) this.kataRepository.findAll());
+        return this.kataEntityToDto((List<KataEntity>) this.kataRepository.findAll());
     }
 
     @Override
     public KataDto getKataById(final String id) {
 
-        return KataMapper.toDto(this.kataRepository.findById(id).orElse(null));
+        return this.kataMapstruct.toDto(this.kataRepository.findById(id).orElse(null));
     }
 
     @Override
     public KataDto getKataByName(final String name) {
 
-        return KataMapper.toDto(this.kataRepository.findByName(name));
+        return this.kataMapstruct.toDto(this.kataRepository.findByName(name));
     }
 
     @Override
     public KataDto createKata(final KataDto kataDto) {
 
-        return KataMapper.toDto(this.kataRepository.save(KataMapper.toEntity(kataDto)));
+        return this.kataMapstruct.toDto(this.kataRepository.save(this.kataMapstruct.toEntity(kataDto)));
     }
 
     @Override
     public KataDto updateKata(final KataDto kataDto) {
 
-        return KataMapper.toDto(this.kataRepository.save(KataMapper.toEntity(kataDto)));
+        return this.kataMapstruct.toDto(this.kataRepository.save(this.kataMapstruct.toEntity(kataDto)));
     }
 
     @Override
@@ -57,7 +56,13 @@ public class KataServiceImpl implements KataService {
 
     @Override
     public List<KataDto> getKatasByLanguage(final String language) {
-        return KataMapper.kataEntityToDto(this.kataRepository.findByLanguage(language));
+        return this.kataEntityToDto(this.kataRepository.findByLanguage(language));
+    }
+
+    private List<KataDto> kataEntityToDto(final List<KataEntity> kataEntities) {
+        return kataEntities.stream() // @formatter:off
+            .map(this.kataMapstruct::toDto)
+            .collect(Collectors.toList()); // @formatter:on
     }
 
 }
