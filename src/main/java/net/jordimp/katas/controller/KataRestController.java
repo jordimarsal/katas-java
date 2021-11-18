@@ -8,37 +8,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.jordimp.katas.dto.UserDto;
-import net.jordimp.katas.service.UserService;
+import net.jordimp.katas.dto.KataDto;
+import net.jordimp.katas.service.KataService;
 
 @RestController
 @RequestMapping(value = "/katas", method = { RequestMethod.POST, RequestMethod.GET })
 public class KataRestController {
 
-    private final UserService userService;
+    private final KataService kataService;
 
-    public KataRestController(final UserService userService) {
-        this.userService = userService;
+    public KataRestController(final KataService kataService) {
+        this.kataService = kataService;
     }
 
     @GetMapping
     public String root() {
-        return "Endpoints:<br>----------------<br><br>/ this page <br> <br>\n/katas/ <br>\n/katas/{name}<br>/katas-by-language/Jordi<br><br>";
+        return "Endpoints:<br>----------------<br><br>/ this page <br> <br>\n/katas/ <br>\n/katas/{name}<br>/katas-by-language/Java<br><br>";
     }
 
     @GetMapping(value = "/katas")
-    public List<UserDto> getUsers() {
-        return this.userService.getUsers();
+    public List<KataDto> getKatas() {
+        return this.kataService.getAllKatas();
     }
 
     @GetMapping(value = "/katas/{name}")
-    public UserDto getUserByUserName(@PathVariable(value = "name") final String username) {
-        return this.userService.getUserByUsername(username);
+    public KataDto getKataByName(@PathVariable(value = "name") final String name) {
+        return this.kataService.getKataByName(name);
     }
 
     @GetMapping(value = "/katas-by-language/{language}")
-    public List<UserDto> getUsersByFirstName(@PathVariable(value = "language") final String firstName) {
-        return this.userService.getUsersByFirstname(firstName);
+    public List<KataDto> getKatasByLanguage(@PathVariable(value = "language") final String language) {
+        return this.kataService.getKatasByLanguage(language);
     }
 
 }

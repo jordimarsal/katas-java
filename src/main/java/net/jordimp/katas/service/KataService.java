@@ -7,9 +7,17 @@ import net.jordimp.katas.dto.UserDto;
 
 public interface KataService {
 
-    List<KataDto> getKatas();
+    List<KataDto> getAllKatas();
 
-    UserDto getKataByName(String name);
+    KataDto getKataById(final String id);
+
+    KataDto createKata(final KataDto kataDto);
+
+    KataDto updateKata(final KataDto kataDto);
+
+    void deleteKata(final String id);
+
+    KataDto getKataByName(String name);
 
     List<KataDto> getKatasByLanguage(String language);
 

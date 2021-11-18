@@ -2,10 +2,12 @@ package net.jordimp.katas.entity;
 
 import javax.persistence.Entity;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
 @NoArgsConstructor
 @Data
 public class KataEntity {
