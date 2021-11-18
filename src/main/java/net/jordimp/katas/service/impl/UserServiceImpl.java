@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import net.jordimp.katas.dto.UserDto;
 import net.jordimp.katas.entity.UserEntity;
 import net.jordimp.katas.mapper.UserMapper;
-import net.jordimp.katas.repository.UserRepository;
+import net.jordimp.katas.repository.h2.UserRepository;
 import net.jordimp.katas.service.UserService;
 
 @Service
