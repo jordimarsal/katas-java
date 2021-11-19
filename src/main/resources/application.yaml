@@ -25,3 +25,8 @@ spring:
     console:
       settings:
         web-allow-others: false
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: springboot-mongo

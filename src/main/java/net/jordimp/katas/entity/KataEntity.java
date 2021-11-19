@@ -1,17 +1,21 @@
 package net.jordimp.katas.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import lombok.Builder;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Builder
 @NoArgsConstructor
 @Data
+@Document
 public class KataEntity {
 
+    @Id
+    private String id;
     private String name;
     private String description;
     private String url;
@@ -19,7 +23,6 @@ public class KataEntity {
     private String category;
     private String level;
     private String author;
-    private String id;
     private String date;
     private String time;
     private String votes;

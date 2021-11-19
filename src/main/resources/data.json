@@ -1,0 +1,34 @@
+[
+  {
+    "_class": "net.jordimp.katas.entity.KataEntity",
+    "id": "1",
+    "name": "Kata 1",
+    "description": "Kata 1 description",
+    "url": "http://www.google.com",
+    "language": "Java",
+    "level": "Advanced",
+    "author": "Jordi MP",
+    "date": "2021-11-01",
+    "time": "10:00",
+    "votes": "0",
+    "comments": "0",
+    "views": "0",
+    "stars": "0"
+  },
+  {
+    "_class": "net.jordimp.katas.entity.KataEntity",
+    "id": "2",
+    "name": "Kata 2",
+    "description": "Kata 2 description",
+    "url": "http://www.google.com",
+    "language": "Java",
+    "level": "Advanced",
+    "author": "Jordi MP",
+    "date": "2016-11-02",
+    "time": "10:00",
+    "votes": "0",
+    "comments": "0",
+    "views": "0",
+    "stars": "0"
+  }
+]
