@@ -24,7 +24,10 @@ public class UserRestController {
 
     @GetMapping(value = "/")
     public String root() {
-        return "Endpoints:<br>----------------<br><br>/ this page <br> <br>\n/users/ <br>\n/users/{username}<br>/users-by-fname/Jordi<br><br>*guest is an username";
+        return "Endpoints:<br>----------------<br><br>/ this page <br> "
+               + "<br> /users/ <br>/users/{username} <br>"
+               + "/users-by-fname/Jordi<br><br>/katas <br>"
+               + "<br> *guest is an username";
     }
 
     @GetMapping(value = "/users")
