@@ -55,7 +55,7 @@ public class UserRestController {
             .firstName(firstName)
             .lastName(lastName)
             .build(); // @formatter:on
-        this.userService.putEmployee(employeeDto);
+        this.userService.updateUser(employeeDto);
     }
 
 }

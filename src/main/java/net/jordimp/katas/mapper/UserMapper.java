@@ -28,4 +28,15 @@ public interface UserMapper {
         // @formatter:on
     }
 
+    static UserEntity toEntity(final UserDto dto) {
+
+        // @formatter:off
+        return UserEntity.builder()
+            .username(dto.getUsername())
+            .firstName(dto.getFirstName())
+            .lastName(dto.getLastName())
+            .build();
+        // @formatter:on
+    }
+
 }

@@ -12,4 +12,6 @@ public interface UserService {
 
     List<UserDto> getUsersByFirstname(String firstName);
 
+    void updateUser(UserDto employeeDto);
+
 }
