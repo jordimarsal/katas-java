@@ -2,6 +2,7 @@ package net.jordimp.katas;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -62,6 +63,11 @@ class BasicsTest {
             true,  true,  true,  true ,
             false, false, true,  true };
         assertEquals(16, Basics.BooleanCounter.countBooleans(array2));
+    }
+
+    @Test
+    void testRandomFlaw() {
+        assertNotEquals(6_600_000, Basics.RandomFlaw.third());
     }
 
 }

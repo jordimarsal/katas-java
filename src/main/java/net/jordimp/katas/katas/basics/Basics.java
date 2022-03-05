@@ -1,6 +1,7 @@
 package net.jordimp.katas.katas.basics;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Basics {
 
@@ -105,6 +106,30 @@ public class Basics {
                 .filter(Boolean.TRUE::equals)
                 //.filter(b -> b != null && b)
                 .count();
+        }
+
+    }
+
+    public static class RandomFlaw {
+
+        static Random random = new Random();
+
+        static int rand(int n) {
+            return Math.abs(random.nextInt()) % n;
+        }
+        private RandomFlaw() {
+        }
+
+        public static int third() {
+            int n= 2 * (Integer.MAX_VALUE / 3);
+            int low = 0;
+            for (int i = 0; i < 10_000_000; i++) {
+                if (rand(n) < n / 2) {
+                    low++;
+                }
+            }
+            System.out.println(low);
+            return low;
         }
 
     }
