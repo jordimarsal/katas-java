@@ -32,6 +32,8 @@ import net.jordimp.katas.service.KataService;
 @RequestMapping(value = "/katas")
 public class KataRestController {
 
+    private static final String BR = "<br><br>";
+
     /**
      * KataService instance.
      */
@@ -73,22 +75,24 @@ public class KataRestController {
     // @formatter:on
     @GetMapping(produces = MediaType.TEXT_HTML_VALUE)
     public String root() {
+        // @formatter:off
         return "<html>"
                + "Endpoints:<br>----------------<br>"
-               + "<br>" + link("/katas") + " this page <br><br>"
-               + "\n/katas/{name} -> " + link("/katas/guest") +" <br><br>"
-               + link("/katas/by-language/Java")+" <br><br>"
-               + "API: " + link("/swagger-ui.html") + "<br><br>"
-               + "API: " + link("/v3/api-docs/")
+               + "<br>" + this.link("/katas") + " this page" + BR
+               + "\n/katas/{name} -> " + this.link("/katas/guest") + BR
+               + this.link("/katas/by-language/Java") + BR
+               + "API: " + this.link("/swagger-ui.html") + BR
+               + "API: " + this.link("/v3/api-docs/")
                + "<br></html>";
+        // @formatter:on
     }
 
     private String stem() {
-        return "http://localhost:"+serverPort;
+        return "http://localhost:" + this.serverPort;
     }
 
     private String link(final String suffix) {
-        return "<a href=\""+stem()+suffix+"\">"+suffix+"</a>";
+        return "<a href=\"" + this.stem() + suffix + "\">" + suffix + "</a>";
     }
 
     /**

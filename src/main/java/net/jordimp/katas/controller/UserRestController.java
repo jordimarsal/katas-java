@@ -49,24 +49,26 @@ public class UserRestController {
      */
     @GetMapping(value = "/")
     public String root() {
+        // @formatter:off
         return "<html><h3>Endpoints:<br>----------------</h3><br>"
-               + stem()+" this page" + BR
-               + link("/users/") + BR
-               + "/users/{username} -> " + link("/users/guest") + BR
+               + this.stem() + " this page" + BR
+               + this.link("/users/") + BR
+               + "/users/{username} -> " + this.link("/users/guest") + BR
                + "/users/{username} -> Also update with PUT" + BR
-               + link("/users-by-fname/Jordi") + BR
-               + link("/katas") + BR
-               + "API: " + link("/swagger-ui.html") + BR
-               + "API: " + link("/v3/api-docs/")
+               + this.link("/users-by-fname/Jordi") + BR
+               + this.link("/katas") + BR
+               + "API: " + this.link("/swagger-ui.html") + BR
+               + "API: " + this.link("/v3/api-docs/")
                + "</html>";
+        // @formatter:on
     }
 
     private String stem() {
-        return "http://localhost:"+serverPort;
+        return "http://localhost:" + this.serverPort;
     }
 
     private String link(final String suffix) {
-        return "<a href=\""+stem()+suffix+"\">"+suffix+"</a>";
+        return "<a href=\"" + this.stem() + suffix + "\">" + suffix + "</a>";
     }
 
     /**

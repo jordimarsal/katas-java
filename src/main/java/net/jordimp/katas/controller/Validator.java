@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 public class Validator {
 
     void validateParams(final String key, final String userName, final String firstName, final String lastName) {
-        validateKey(key);
-        validatePathString(userName);
-        validatePathString(firstName);
-        validatePathString(lastName);
+        this.validateKey(key);
+        this.validatePathString(userName);
+        this.validatePathString(firstName);
+        this.validatePathString(lastName);
     }
 
     public void validatePathStringToLong(final String longPath) {
