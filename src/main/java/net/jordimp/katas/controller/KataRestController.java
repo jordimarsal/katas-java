@@ -2,12 +2,21 @@ package net.jordimp.katas.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import net.jordimp.katas.dto.KataDto;
 import net.jordimp.katas.service.KataService;
 
@@ -17,9 +26,10 @@ import net.jordimp.katas.service.KataService;
  * @author Jordi Marsal
  *
  */
-
+@Tag(name = "KataRestController",
+    description = "This is the main controller for getting Katas' Information")
 @RestController
-@RequestMapping(value = "/katas", method = { RequestMethod.POST, RequestMethod.GET })
+@RequestMapping(value = "/katas")
 public class KataRestController {
 
     /**
@@ -36,14 +46,49 @@ public class KataRestController {
         this.kataService = kataService;
     }
 
+    @Value("${server.port}")
+    private int serverPort;
+
     /**
      * Information endpoint.
      *
      * @return endpoints.
      */
-    @GetMapping
+    // @formatter:off
+    @Operation(description = "RootInfo", summary = "This endpoint get Info for endpoints",
+        security = {@SecurityRequirement(name = "Authorization")})
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200",
+            description = "Successful operation",
+            content = @Content(mediaType = "text/html", schema = @Schema(implementation = String.class))),
+        @ApiResponse(responseCode = "x-error",
+            description = "Failed operation",
+            content = @Content(
+                examples = {@ExampleObject(name = "INF-0002",
+                    description = "Thrown when trying to get endpoints info.",
+                    value = "{\"errorCode\":\"INF-0002\",\"errorMessage\":\"Info unavailable.\"}"),
+                },
+                mediaType = "application/json"))
+    })
+    // @formatter:on
+    @GetMapping(produces = MediaType.TEXT_HTML_VALUE)
     public String root() {
-        return "Endpoints:<br>----------------<br><br>/ this page <br> <br>\n/katas/ <br>\n/katas/{name}<br>/katas-by-language/Java<br><br>";
+        return "<html>"
+               + "Endpoints:<br>----------------<br>"
+               + "<br>" + link("/katas") + " this page <br><br>"
+               + "\n/katas/{name} -> " + link("/katas/guest") +" <br><br>"
+               + link("/katas/by-language/Java")+" <br><br>"
+               + "API: " + link("/swagger-ui.html") + "<br><br>"
+               + "API: " + link("/v3/api-docs/")
+               + "<br></html>";
+    }
+
+    private String stem() {
+        return "http://localhost:"+serverPort;
+    }
+
+    private String link(final String suffix) {
+        return "<a href=\""+stem()+suffix+"\">"+suffix+"</a>";
     }
 
     /**
@@ -51,7 +96,7 @@ public class KataRestController {
      *
      * @return List of katas.
      */
-    @GetMapping(value = "/katas")
+    @GetMapping(value = "/all")
     public List<KataDto> getKatas() {
         return this.kataService.getAllKatas();
     }
@@ -62,7 +107,7 @@ public class KataRestController {
      * @param name kata name.
      * @return kata.
      */
-    @GetMapping(value = "/katas/{name}")
+    @GetMapping(value = "/{name}")
     public KataDto getKataByName(@PathVariable(value = "name") final String name) {
         return this.kataService.getKataByName(name);
     }
@@ -73,7 +118,7 @@ public class KataRestController {
      * @param language kata language.
      * @return List of katas.
      */
-    @GetMapping(value = "/katas-by-language/{language}")
+    @GetMapping(value = "/by-language/{language}")
     public List<KataDto> getKatasByLanguage(@PathVariable(value = "language") final String language) {
         return this.kataService.getKatasByLanguage(language);
     }

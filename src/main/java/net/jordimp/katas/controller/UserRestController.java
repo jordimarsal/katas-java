@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import net.jordimp.katas.dto.UserDto;
 import net.jordimp.katas.service.UserService;
@@ -19,7 +20,8 @@ import net.jordimp.katas.service.UserService;
  * @author: Jordi Marsal.
  *
  */
-
+@Tag(name = "UserRestController",
+    description = "This is the main controller for getting User' Information")
 @RestController
 @RequestMapping(value = "/")
 @RequiredArgsConstructor
