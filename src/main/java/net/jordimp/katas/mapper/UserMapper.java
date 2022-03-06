@@ -1,7 +1,7 @@
 package net.jordimp.katas.mapper;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 import net.jordimp.katas.dto.UserDto;
 import net.jordimp.katas.entity.UserEntity;
@@ -13,7 +13,7 @@ public interface UserMapper {
         // @formatter:off
         return userEntities.stream()
             .map(UserMapper::toDto)
-            .collect(Collectors.toList());
+            .toList();
         // @formatter:on
     }
 
@@ -28,13 +28,14 @@ public interface UserMapper {
         // @formatter:on
     }
 
-    static UserEntity toEntity(final UserDto dto) {
+    static UserEntity toEntity(final UserDto dto, String password) {
 
         // @formatter:off
         return UserEntity.builder()
             .username(dto.getUsername())
             .firstName(dto.getFirstName())
             .lastName(dto.getLastName())
+            .password(password)
             .build();
         // @formatter:on
     }

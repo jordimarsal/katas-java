@@ -37,7 +37,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(final UserDto employeeDto) {
-        this.userRepository.save(UserMapper.toEntity(employeeDto));
+        final UserEntity userEntityOld = this.userRepository.findByUsername(employeeDto.getUsername());
+        this.userRepository.save(UserMapper.toEntity(employeeDto, userEntityOld.getPassword()));
     }
 
 }

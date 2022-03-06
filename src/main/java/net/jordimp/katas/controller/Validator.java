@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class Validator {
 
-    void validateParams(final String key, final String employeeId, final String firstName, final String lastName) {
+    void validateParams(final String key, final String userName, final String firstName, final String lastName) {
         validateKey(key);
-        validatePathStringToLong(employeeId);
+        validatePathString(userName);
         validatePathString(firstName);
         validatePathString(lastName);
     }
