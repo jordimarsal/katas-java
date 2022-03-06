@@ -12,7 +12,7 @@ public class MongoConfig {
     @Bean
     public Jackson2RepositoryPopulatorFactoryBean getRespositoryPopulator() {
         final Jackson2RepositoryPopulatorFactoryBean factory = new Jackson2RepositoryPopulatorFactoryBean();
-        factory.setResources(new Resource[] { new ClassPathResource("data.json") });
+        factory.setResources(new Resource[] { new ClassPathResource("data-mongo.json") });
         return factory;
     }
 
