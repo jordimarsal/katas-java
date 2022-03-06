@@ -2,6 +2,7 @@ package net.jordimp.katas.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -36,6 +37,11 @@ public class UserRestController {
      */
     private final Validator validator;
 
+    @Value("${server.port}")
+    private int serverPort;
+
+    private static final String BR = "<br><br>";
+
     /**
      * Information endpoint.
      *
@@ -43,10 +49,24 @@ public class UserRestController {
      */
     @GetMapping(value = "/")
     public String root() {
-        return "Endpoints:<br>----------------<br><br>/ this page <br> "
-               + "<br> /users/ <br>/users/{username} <br>"
-               + "/users-by-fname/Jordi<br><br>/katas <br>"
-               + "<br> *guest is an username";
+        return "<html><h3>Endpoints:<br>----------------</h3><br>"
+               + stem()+" this page" + BR
+               + link("/users/") + BR
+               + "/users/{username} -> " + link("/users/guest") + BR
+               + "/users/{username} -> Also update with PUT" + BR
+               + link("/users-by-fname/Jordi") + BR
+               + link("/katas") + BR
+               + "API: " + link("/swagger-ui.html") + BR
+               + "API: " + link("/v3/api-docs/")
+               + "</html>";
+    }
+
+    private String stem() {
+        return "http://localhost:"+serverPort;
+    }
+
+    private String link(final String suffix) {
+        return "<a href=\""+stem()+suffix+"\">"+suffix+"</a>";
     }
 
     /**
