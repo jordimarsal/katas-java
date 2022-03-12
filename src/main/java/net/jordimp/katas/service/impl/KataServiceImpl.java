@@ -1,11 +1,11 @@
 package net.jordimp.katas.service.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import net.jordimp.katas.controller.validation.exception.KataNotFoundException;
 import net.jordimp.katas.dto.KataDto;
 import net.jordimp.katas.entity.KataEntity;
 import net.jordimp.katas.mapper.KataMapper;
@@ -27,13 +27,19 @@ public class KataServiceImpl implements KataService {
     @Override
     public KataDto getKataById(final String id) {
 
-        return this.kataMapstruct.toDto(this.kataRepository.findById(id).orElse(null));
+        return this.kataMapstruct.toDto( // @formatter:off
+            this.kataRepository.findById(id)
+                .orElseThrow(() -> new KataNotFoundException("Kata not found"))
+        ); // @formatter:on
     }
 
     @Override
     public KataDto getKataByName(final String name) {
 
-        return this.kataMapstruct.toDto(this.kataRepository.findByName(name));
+        return this.kataMapstruct.toDto( // @formatter:off
+            this.kataRepository.findByName(name)
+                .orElseThrow(() -> new KataNotFoundException("Kata not found"))
+        ); // @formatter:on
     }
 
     @Override
@@ -62,7 +68,7 @@ public class KataServiceImpl implements KataService {
     private List<KataDto> kataEntityToDto(final List<KataEntity> kataEntities) {
         return kataEntities.stream() // @formatter:off
             .map(this.kataMapstruct::toDto)
-            .collect(Collectors.toList()); // @formatter:on
+            .toList(); // @formatter:on
     }
 
 }

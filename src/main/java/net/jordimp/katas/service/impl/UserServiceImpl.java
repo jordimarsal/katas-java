@@ -1,10 +1,12 @@
 package net.jordimp.katas.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import net.jordimp.katas.controller.validation.exception.UserNotFoundException;
 import net.jordimp.katas.dto.UserDto;
 import net.jordimp.katas.entity.UserEntity;
 import net.jordimp.katas.mapper.UserMapper;
@@ -25,8 +27,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserByUsername(final String username) {
-        final UserEntity userEntity = this.userRepository.findByUsername(username);
-        return UserMapper.toDto(userEntity);
+        final Optional<UserEntity> userEntity = this.userRepository.findByUsername(username);
+        return UserMapper.toDto(userEntity.orElseThrow(() -> new UserNotFoundException("User not found")));
     }
 
     @Override
@@ -37,7 +39,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(final UserDto employeeDto) {
-        final UserEntity userEntityOld = this.userRepository.findByUsername(employeeDto.getUsername());
+        final UserEntity userEntityOld = this.userRepository.findByUsername(employeeDto.getUsername())
+            .orElseThrow(() -> new UserNotFoundException("User not found"));
         this.userRepository.save(UserMapper.toEntity(employeeDto, userEntityOld.getPassword()));
     }
 
