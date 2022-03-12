@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import net.jordimp.katas.controller.validation.Validator;
 import net.jordimp.katas.dto.UserDto;
 import net.jordimp.katas.service.UserService;
 
@@ -123,5 +124,8 @@ public class UserRestController {
             .build(); // @formatter:on
         this.userService.updateUser(employeeDto);
     }
+
+    // TODO: Add create user
+    // TODO: Add create / update form Vue.js??
 
 }

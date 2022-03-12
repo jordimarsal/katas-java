@@ -1,11 +1,11 @@
-package net.jordimp.katas.controller;
+package net.jordimp.katas.controller.validation;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class Validator {
 
-    void validateParams(final String key, final String userName, final String firstName, final String lastName) {
+    public void validateParams(final String key, final String userName, final String firstName, final String lastName) {
         this.validateKey(key);
         this.validatePathString(userName);
         this.validatePathString(firstName);

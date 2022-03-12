@@ -79,7 +79,7 @@ public class KataRestController {
         return "<html>"
                + "Endpoints:<br>----------------<br>"
                + "<br>" + this.link("/katas") + " this page" + BR
-               + "\n/katas/{name} -> " + this.link("/katas/guest") + BR
+               + "\n/katas/{name} -> " + this.link("/katas/Kata 1") + BR
                + this.link("/katas/by-language/Java") + BR
                + "API: " + this.link("/swagger-ui.html") + BR
                + "API: " + this.link("/v3/api-docs/")
