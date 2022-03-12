@@ -3,6 +3,9 @@ package net.jordimp.katas.katas.basics;
 import java.util.Arrays;
 import java.util.Random;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Basics {
 
     private Basics() {
@@ -128,8 +131,19 @@ public class Basics {
                     low++;
                 }
             }
-            System.out.println(low);
+            log.info(String.valueOf(low));
             return low;
+        }
+
+    }
+
+    public static class OneDimensionDistance {
+
+        private OneDimensionDistance() {
+        }
+
+        public static int getLeastDistance(final int u, final int x, final int y) {
+            return Math.min(Math.abs(u - x), Math.abs(u - y));
         }
 
     }

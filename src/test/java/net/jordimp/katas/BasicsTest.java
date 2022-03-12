@@ -70,5 +70,11 @@ class BasicsTest {
         assertNotEquals(6_600_000, Basics.RandomFlaw.third());
     }
 
+    @Test
+    void testOneDimension() {
+        assertEquals(2, Basics.OneDimensionDistance.getLeastDistance(1,4,3));
+        assertEquals(3, Basics.OneDimensionDistance.getLeastDistance(1,-2,5));
+    }
+
 }
 
