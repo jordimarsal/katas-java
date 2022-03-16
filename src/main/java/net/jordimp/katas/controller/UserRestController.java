@@ -25,7 +25,7 @@ import net.jordimp.katas.service.UserService;
 @Tag(name = "UserRestController",
     description = "This is the main controller for getting User' Information")
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/users")
 @RequiredArgsConstructor
 public class UserRestController {
 
