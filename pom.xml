@@ -47,16 +47,6 @@
                 <version>${slf4j.version}</version>
             </dependency>
             -->
-            <!-- SpringBoot Web -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-            </dependency>
-            <!-- needed to render html templates in /resources/templates -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            </dependency>
 
 
             <!-- Project Lombok -->

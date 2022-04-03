@@ -21,6 +21,10 @@
         <junit.version>5.8.2</junit.version>
         <embed.mongo.version>3.4.3</embed.mongo.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
+
+        <maven-scm-api.version>1.11.2</maven-scm-api.version>
+        <maven-scm-plugin.version>${maven-scm-api.version}</maven-scm-plugin.version>
+        <start-class>net.jordimp.katas.Application</start-class>
     </properties>
 
     <dependencies>
@@ -32,6 +36,16 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!-- SpringBoot Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- needed to render html templates in /resources/templates -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <!-- SpringBoot JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -99,6 +113,7 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -124,6 +139,21 @@
                         </compilerArg>
                     </compilerArgs>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <mainClass>${start-class}</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

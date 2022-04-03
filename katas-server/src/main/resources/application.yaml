@@ -4,6 +4,7 @@ server:
 client:
   katas:
     url: http://localhost:9099
+
 spring:
   datasource:
     url:
