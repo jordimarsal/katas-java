@@ -2,7 +2,6 @@ package net.jordimp.katas.katas.streams;
 
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
@@ -22,7 +21,7 @@ public class RecycleStream {
 
         final boolean[] isEven = { false };
 
-        final List<String> list = NEWLINE.splitAsStream(text).collect(Collectors.toList());
+        final List<String> list = NEWLINE.splitAsStream(text).toList();
         // -> Stream.of() / Arrays.stream()
 
         list.stream().filter(w -> !w.startsWith("#")).skip(1).filter(l -> isEven[0] = !isEven[0])
