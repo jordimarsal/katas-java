@@ -32,6 +32,12 @@ spring:
         web-allow-others: false
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: katas-java
+      # host : localhost, a Docker -> host: mongodb
+      #host: jordi-deb
+      #host: mongodb://mongoservice:27017/katas-java
+      #port: 27017
+      #database: katas-java
+      uri: mongodb://mongoservice:27017/katas-java
+    mongo:
+      repositories:
+        enabled: true
