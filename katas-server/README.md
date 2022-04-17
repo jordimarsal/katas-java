@@ -19,7 +19,6 @@ docker run --net=host -p 9099:9099 katas-server
 ## MongoDB
 It's used a localhost MongoDB instance. **Check it's up and running.**
 
-```
 
 ### config:
 [docker-local-mongodb](https://tsmx.net/docker-local-mongodb/)
