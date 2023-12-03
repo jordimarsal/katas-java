@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -115,19 +116,21 @@ public class UserRestController {
      *
      */
     @PutMapping(value = "/users/{username}")
-    public void putUser(@RequestHeader(value = "Key") final String key,
-        @PathVariable(value="username") final String userName, final String firstName, final String lastName) {
+    public UserDto putUser(@RequestHeader(value = "Key") final String key,
+        @PathVariable(value="username") final String userName, @RequestBody final UserDto requestUser) {
 
+        final String firstName = requestUser.getFirstName();
+        final String lastName = requestUser.getLastName();
         this.validator.validateParams(key, userName, firstName, lastName);
-        final UserDto employeeDto = UserDto.builder() // @formatter:off
+        final UserDto employeeDto = UserDto.builder()
             .username(userName)
             .firstName(firstName)
             .lastName(lastName)
-            .build(); // @formatter:on
+            .build();
         this.userService.updateUser(employeeDto);
+        return employeeDto;
     }
 
     // TODO: Add create user
-    // TODO: Add create / update form Vue.js??
 
 }

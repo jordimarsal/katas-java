@@ -10,82 +10,87 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <title>Katas Java</title>
+    <style>
+        pre {
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.65em;
+            background-color: #333;
+            padding: 10px;
+            border: 1px solid #666;
+            white-space: pre-wrap;
+            max-width: 44%;
+            overflow-x: auto;
+        }
+        pre a {
+            text-decoration: none;
+            color: green;
+        }
+    </style>
 </head>
 <body>
 <!-- Include Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 <div class="container-fluid">
-    <h4 class="display-4">Endpoints</h4>
+    <p class="display-6">Endpoints</p>
     <p class="lead">Location of the endpoints in this application.
     </p>
 
     <div id="contents-main">
         <div class="lead">
-            <span th:utext="${eventName}"></span>
+            <ul>
+                <li><a target="_blank" th:href="@{/users}" th:text="'/users/'">/users/</a></li>
+                <li><a target="_blank" th:href="@{/katas}" th:text="'/katas'">/katas</a></li>
+                <li>API HTML ui: <a target="_blank" th:href="@{/swagger-ui.html}" th:text="'/swagger-ui.html'">/swagger-ui.html</a></li>
+                <li>API Definition: <a target="_blank" th:href="@{/v3/api-docs/}" th:text="'/v3/api-docs/'">/v3/api-docs/</a></li>
+                <li>H2 Database: <a target="_blank" th:href="@{/h2-console/}" th:text="'/h2-console/'">/h2-console/</a></li>
+            </ul>
         </div>
         <div id="contents">
-            <!-- Since we create a Vue component pointing to id=contents,
-                 Vue will generate a unordered list of items such
-                 as this inside this div.
-                 v-for will cause a loop to run over all players
-                 as per the players array found in app.data
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>
-            -->
-            <ul>
-                <li style="list-style-type:none" v-for="player in players">
-                    <player-card
-                            v-bind:player="player" v-bind:key="player.id">
-                    </player-card>
-                </li>
-            </ul>
+            <h3>CURL Operations:</h3>
+            <pre>
+<span><a target="_blank" th:href="@{/users/users}">&gt curl -X GET http://localhost:9090/users/users</a></span>
+<span><a target="_blank" th:href="@{/users/jordi}">&gt curl -X GET http://localhost:9090/users/jordi</a></span>
+<span><a target="_blank" th:href="_">&gt curl -X PUT -H "Content-Type: application/json" \
+  -H "Key: Magic_Key" \
+  -d '{"firstName":"Jordi","lastName":"M"}' \
+  http://localhost:9090/users/users/jordi</a></span>
+
+<span><a target="_blank" th:href="@{/katas/all}">&gt curl -X GET http://localhost:9090/katas/all</a></span>
+<span><a target="_blank" th:href="@{/katas/Kata%201}">&gt curl -X GET http://localhost:9090/katas/Kata 1</a></span>
+
+<span><a target="_blank" th:href="@{/users/jordi}">&gt curl -X GET http://localhost:9090/users/jordi</a></span>
+
+<span><a target="_blank" th:href="@{/v3/api-docs/}">&gt curl -X GET http://localhost:9090/v3/api-docs/</a></span>
+            </pre>
         </div>
+        <h3>Terminal</h3>
+        <pre>
+    > curl -X GET http://localhost:9090/users/users
+
+    [
+      {
+        "username": "admin",
+        "firstName": "Jordi",
+        "lastName": "MP"
+      },
+      {
+        "username": "jordi",
+        "firstName": "Jordi",
+        "lastName": "MP"
+      },
+      {
+        "username": "guest",
+        "firstName": "Some",
+        "lastName": "One"
+      }
+    ]
+        </pre>
     </div>
 </div>
 
-<!-- include Vue.js -->
-<!-- we include babel js so that we can write ES6 code in the browser
-     for a more production like setup it is recommended to setup a build process
-     to transpile and minify the code (such as using webpack)
- -->
-<!--script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.31/vue.global.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script-->
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
-<script type="text/babel">
-    // player-card is now a Vue component that generates a 'card' showing a player
-    // It can be used
-    // declaratively like <player-card v-bind:player="someplayer">
-    Vue.component('player-card', {
-        props: ['player'],
-        template: `<div class="card">
-                    <div class="card-body">
-                        <h6 class="card-title">
-                            {{ player.name }}
-                        </h6>
-                        <p class="card-text">
-                            <div>
-                            {{ player.description }}
-                            </div>
-                        </p>
-                    </div>
-                </div>`
-    });
-
-    var app = new Vue({
-        el: '#contents',
-        data: {
-            players: [
-                {id: "1", name: "Lionel Messi", description: "Argentina's superstar"},
-                {id: "2", name: "Christiano Ronaldo", description: "Portugal top-ranked player"}
-            ]
-        }
-    });
-
-</script>
 </body>
 </html>

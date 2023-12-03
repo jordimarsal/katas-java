@@ -35,3 +35,19 @@ in /etc/hosts
 ```
 127.0.0.1	mongoservice
 ```
+
+## CURL access
+
+
+## Access on browser
+http://localhost:9090/ <br>
+http://localhost:9090/users <br>
+http://localhost:9090/katas <br>
+
+http://localhost:9090/swagger-ui/index.html <br>
+http://localhost:9090/v3/api-docs/
+
+## Databases
+
+http://localhost:9090/h2-console/ (sa:admin) <br>
+mongodb://mongoservice:27017/katas-java
